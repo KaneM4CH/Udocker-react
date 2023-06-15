@@ -1,0 +1,30 @@
+FROM node:16-alpine
+
+# RUN mkdir /app && chown node:node /app
+# WORKDIR '/app'
+
+# USER node
+# COPY --chown=node:node package.json package-lock.json* ./
+
+# COPY package.json .
+# RUN npm install
+
+
+# COPY --chown=node:node . .
+
+# CMD ["npm", "run", "start"]
+
+USER node
+    
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+    
+COPY --chown=node:node ./package.json ./
+RUN npm install
+COPY --chown=node:node ./ ./
+    
+CMD ["npm", "run", "start"]
+
+
+
+
